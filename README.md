@@ -155,6 +155,88 @@ curl -X PUT http://localhost:8080/api/todos/1 \
 curl -X DELETE http://localhost:8080/api/todos/1
 ```
 
+## Deployment
+
+### Docker Deployment
+
+#### Prerequisites
+- Docker and Docker Compose installed
+
+#### Build and Run with Docker
+
+1. **Build the application first:**
+```bash
+./gradlew clean build
+```
+
+2. **Build the Docker image:**
+```bash
+docker build -t todo-backend:latest .
+```
+
+3. **Run the container:**
+```bash
+docker run -d -p 8080:8080 --name todo-backend todo-backend:latest
+```
+
+The application will be accessible at `http://localhost:8080`
+
+#### Using Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+This will build and start the application in a container.
+
+#### View Logs
+```bash
+docker logs -f todo-backend
+```
+
+#### Stop the Container
+```bash
+docker stop todo-backend
+```
+
+#### Remove the Container
+```bash
+docker rm todo-backend
+```
+
+### Automatic Deployment Script
+
+For Linux/Mac:
+```bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+For Windows:
+```batch
+deploy.bat
+```
+
+These scripts will build the application and display Docker deployment options.
+
+### Cloud Deployment Options
+
+#### Heroku
+1. Install Heroku CLI
+2. Create a Heroku app: `heroku create todo-backend`
+3. Deploy: `git push heroku main`
+
+#### AWS
+- Use AWS Elastic Beanstalk with Docker
+- Or deploy to EC2 with Docker
+
+#### Azure
+- Use Azure Container Instances
+- Or Azure App Service
+
+#### Google Cloud
+- Use Cloud Run or Compute Engine
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit pull requests.
